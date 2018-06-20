@@ -5,16 +5,41 @@
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
 
+buildscript {
+		ext {
+			springBootVersion = '2.0.3.RELEASE'
+		}
+		repositories {
+			maven { url 'https://repo.spring.io/libs-snapshot' }
+		}
+		dependencies {
+			classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		}
+}
 
 allprojects {
-    repositories {
-        mavenCentral() 
-    }
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+
+	defaultTasks 'build'
+	buildDir 'stagging'
 }
 
 
 
 subprojects {
     version = '1.0'
+
+	sourceCompatibility = 1.8
+
+	repositories {
+		mavenCentral() 
+	}
+
+	dependencies {
+		compile('org.springframework.boot:spring-boot-starter-security')
+		testCompile('org.springframework.boot:spring-boot-starter-test')
+		testCompile('org.springframework.security:spring-security-test')
+	}
 }
 
