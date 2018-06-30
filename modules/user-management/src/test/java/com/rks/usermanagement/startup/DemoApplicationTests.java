@@ -1,4 +1,4 @@
-package com.rks.demo;
+package com.rks.usermanagement.startup;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
